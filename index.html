@@ -341,6 +341,49 @@
     .reveal-d3 { transition-delay: 0.18s; }
     .reveal-d4 { transition-delay: 0.24s; }
     .reveal-d5 { transition-delay: 0.30s; }
+    .reveal-d6 { transition-delay: 0.36s; }
+    .reveal-d7 { transition-delay: 0.42s; }
+
+    /* ── Tool-calling flow diagram ── */
+    .flow-demo {
+      display: flex; align-items: center; gap: 7px;
+      margin-top: 20px; flex-wrap: wrap;
+    }
+    .flow-step {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2px;
+      padding: 5px 12px; border-radius: 8px;
+      background: rgba(201,162,77,0.07); border: 1px solid var(--gold-border);
+      color: var(--text-secondary); white-space: nowrap; transition: all 0.2s;
+    }
+    .flow-step.hi {
+      background: rgba(201,162,77,0.16);
+      color: var(--gold-light); border-color: rgba(201,162,77,0.38);
+    }
+    .flow-arrow {
+      color: var(--gold-border); font-size: 0.75rem; flex-shrink: 0;
+    }
+    .bento-card:hover .flow-step.hi {
+      box-shadow: 0 2px 12px rgba(201,162,77,0.18);
+    }
+
+    /* ── Agent chips ── */
+    .agent-chips {
+      display: flex; flex-direction: column; gap: 8px; margin-top: 18px;
+    }
+    .agent-chip {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      background: rgba(201,162,77,0.05); border: 1px solid var(--border);
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .bento-card:hover .agent-chip { border-color: var(--gold-border); background: rgba(201,162,77,0.08); }
+    .agent-chip-name {
+      font-size: 0.72rem; font-weight: 700; color: var(--gold-light);
+      letter-spacing: 0.3px; white-space: nowrap; min-width: 120px;
+    }
+    .agent-chip-desc {
+      font-size: 0.72rem; color: var(--text-muted); line-height: 1.5;
+    }
 
     /* ── Hero entrance ── */
     .hero-enter { animation: heroIn 0.8s cubic-bezier(0.16,1,0.3,1) both; }
@@ -407,7 +450,7 @@
       开源免费 · 本地运行 · 隐私优先
     </div>
     <h1 class="hero-enter hero-enter-d2">DeepRead AI</h1>
-    <p class="hero-sub hero-enter hero-enter-d3">集 PDF 阅读、OCR 识别、AI 对话于一体的桌面阅读器</p>
+    <p class="hero-sub hero-enter hero-enter-d3">AI 不只是问答助手，它能主动读取你的笔记、搜索文档内容，深度理解你正在阅读的一切</p>
     <div class="hero-actions hero-enter hero-enter-d4">
       <a class="btn btn-gold" href="#download">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
@@ -441,20 +484,24 @@
   <section class="features" id="features">
     <div class="section-tag reveal">核心功能</div>
     <h2 class="section-heading reveal">从渲染到理解，重新定义阅读</h2>
-    <p class="section-desc reveal">每一个功能都为深度阅读而设计</p>
+    <p class="section-desc reveal">每一个功能都为深度阅读而设计，v0.1.18 大幅增强 AI 主动能力</p>
 
     <div class="bento">
+
+      <!-- Row 1 -->
+
       <!-- Card 1: PDF (wide) -->
       <div class="bento-card wide reveal reveal-d1">
         <div class="bento-icon">
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11zM9 13h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h2v1.5H9V10z"/></svg>
         </div>
         <h3>PDF 高质量阅读</h3>
-        <p>基于 PyMuPDF 的高保真页面渲染，支持文本选择、全文搜索、流畅缩放与翻页，还原纸质文档的阅读体验。</p>
+        <p>基于 PyMuPDF 的高保真页面渲染，支持文本选择、全文搜索、流畅缩放与翻页，还原纸质文档的阅读体验。同时支持 Word、TXT 等多种格式。</p>
         <div class="tech-pills">
           <span class="tech-pill">PyMuPDF</span>
           <span class="tech-pill">文本选择</span>
           <span class="tech-pill">全文搜索</span>
+          <span class="tech-pill">PDF / DOCX / TXT</span>
         </div>
       </div>
 
@@ -464,40 +511,98 @@
           <svg viewBox="0 0 24 24"><path d="M3 5V3h4v2H3zm0 6V9h4v2H3zm0 6v-2h4v2H3zm18-12V3h-4v2h4zm0 6V9h-4v2h4zm0 6v-2h-4v2h4zM9 3v4H7V3h2zm8 0v4h-2V3h2zM9 17v4H7v-4h2zm8 0v4h-2v-4h2zm-4-7a2 2 0 110 4 2 2 0 010-4z"/></svg>
         </div>
         <h3>OCR 文字识别</h3>
-        <p>内置 PaddleOCR，精准识别中英文混排内容。支持移动端与服务器端模型，发布版模型已预装。</p>
-      </div>
-
-      <!-- Card 3: AI -->
-      <div class="bento-card reveal reveal-d3">
-        <div class="bento-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-        </div>
-        <h3>AI 多模型助手</h3>
-        <p>支持 OpenAI、Anthropic 及 Ollama 本地模型。选中文本即可提问、摘要、翻译或解释。</p>
+        <p>内置 PaddleOCR，精准识别中英文混排扫描页面。识别结果写入 SQLite 持久缓存，LRU 管理，重新打开文件无需重跑。</p>
         <div class="tech-pills">
-          <span class="tech-pill">OpenAI</span>
-          <span class="tech-pill">Anthropic</span>
-          <span class="tech-pill">Ollama</span>
+          <span class="tech-pill">PaddleOCR</span>
+          <span class="tech-pill">持久化缓存</span>
+          <span class="tech-pill">LRU 淘汰</span>
         </div>
       </div>
 
-      <!-- Card 4: Notes -->
+      <!-- Row 2 -->
+
+      <!-- Card 3: AI Tool Calling (wide) -->
+      <div class="bento-card wide reveal reveal-d3">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4v-2z"/></svg>
+        </div>
+        <h3>AI 主动工具调用</h3>
+        <p>OpenAI 与 Anthropic 支持原生 function calling。AI 不再只依赖粘贴的文本，可以主动查询你的笔记、搜索文档段落，给出有真实依据的回答。Ollama 自动降级为普通对话模式。</p>
+        <div class="flow-demo">
+          <span class="flow-step">用户提问</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step hi">AI 调用工具</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">读取笔记 / 搜索文档</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">有据可查的回答</span>
+        </div>
+        <div class="tech-pills" style="margin-top:14px">
+          <span class="tech-pill">function calling</span>
+          <span class="tech-pill">NoteReadTool</span>
+          <span class="tech-pill">DocumentSearchTool</span>
+          <span class="tech-pill">NoteDeleteTool</span>
+        </div>
+      </div>
+
+      <!-- Card 4: AI Agents -->
       <div class="bento-card reveal reveal-d4">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <h3>三种专属 Agent</h3>
+        <p>不同任务交给最合适的 Agent，各司其职，避免 AI 过度发散。</p>
+        <div class="agent-chips">
+          <div class="agent-chip">
+            <span class="agent-chip-name">ChatAgent</span>
+            <span class="agent-chip-desc">多轮对话，保留完整历史与上下文</span>
+          </div>
+          <div class="agent-chip">
+            <span class="agent-chip-name">NoteAssistAgent</span>
+            <span class="agent-chip-desc">专注笔记改写、扩展与管理</span>
+          </div>
+          <div class="agent-chip">
+            <span class="agent-chip-name">DocumentAgent</span>
+            <span class="agent-chip-desc">文档摘要、关键点、问题生成</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+
+      <!-- Card 5: Markdown Notes -->
+      <div class="bento-card reveal reveal-d5">
         <div class="bento-icon">
           <svg viewBox="0 0 24 24"><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 000-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
         </div>
         <h3>Markdown 笔记</h3>
-        <p>按页记录阅读笔记，支持完整 Markdown 语法和 PDF 页面引用。</p>
+        <p>按页记录阅读笔记，支持完整 Markdown 语法与 PDF 页面引用语法 <code style="font-size:0.75rem;background:var(--gold-dim);padding:1px 5px;border-radius:4px">[[pdf:doc#page=N]]</code>。</p>
       </div>
 
-      <!-- Card 5: Persistence -->
-      <div class="bento-card reveal reveal-d5">
+      <!-- Card 6: AI Note Assist -->
+      <div class="bento-card reveal reveal-d6">
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        </div>
+        <h3>AI 笔记助手</h3>
+        <p>AI 可改进、扩写、翻译笔记，支持自定义指令。现可主动读取全部笔记提供上下文，并可按需删除笔记条目。</p>
+        <div class="tech-pills">
+          <span class="tech-pill">改进</span>
+          <span class="tech-pill">扩写</span>
+          <span class="tech-pill">翻译</span>
+          <span class="tech-pill">自定义</span>
+        </div>
+      </div>
+
+      <!-- Card 7: Persistence -->
+      <div class="bento-card reveal reveal-d7">
         <div class="bento-icon">
           <svg viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7a3 3 0 110 6 3 3 0 010-6zM6 6h9v4H6V6z"/></svg>
         </div>
         <h3>会话持久化</h3>
-        <p>SQLite 自动保存阅读位置、笔记和 AI 设置，下次打开无缝恢复。</p>
+        <p>SQLite 自动保存阅读位置、缩放比例、笔记与 AI 设置，下次打开无缝恢复。</p>
       </div>
+
     </div>
   </section>
 
